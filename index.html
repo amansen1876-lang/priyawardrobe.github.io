@@ -3,111 +3,655 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>PriyaWardrobe | Fashion Finds</title>
-<meta name="description" content="PriyaWardrobe - handpicked fashion finds, trending styles and affiliate picks.">
+
 <style>
-:root{--bg:#fff8fb;--card:#fff;--text:#211b20;--muted:#746b71;--accent:#e85b8b;--accent2:#b93667;--line:#f1dce5}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#fff7fa,#fff);color:var(--text)}
-.container{max-width:1050px;margin:auto;padding:0 18px}
-header{padding:24px 0 12px;text-align:center}
-.logo{font-size:32px;font-weight:800;letter-spacing:-1px}
-.logo span{color:var(--accent)}
-.tagline{color:var(--muted);margin:7px 0 18px}
-.social a{display:inline-block;text-decoration:none;color:#fff;background:#211b20;padding:9px 15px;border-radius:999px;margin:4px;font-size:13px}
-.hero{margin:12px auto 28px;border-radius:26px;padding:48px 24px;text-align:center;background:linear-gradient(135deg,#ffe4ee,#fff0f6 50%,#fce0ea);border:1px solid var(--line)}
-.hero h1{font-size:clamp(32px,7vw,58px);margin:0 0 10px;line-height:1.02}
-.hero p{max-width:620px;margin:0 auto 22px;color:var(--muted);font-size:16px;line-height:1.6}
-.cta{display:inline-block;background:var(--accent2);color:#fff;text-decoration:none;padding:13px 22px;border-radius:999px;font-weight:700}
-h2{text-align:center;margin:34px 0 18px;font-size:25px}
-.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-.cat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 8px;text-align:center;text-decoration:none;color:var(--text);font-weight:700;font-size:13px}
-.cat:hover,.product:hover{transform:translateY(-2px)}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.product{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.2s;box-shadow:0 6px 20px rgba(120,40,75,.06)}
-.pic{height:230px;background:linear-gradient(135deg,#f9d9e6,#f5eef2);display:flex;align-items:center;justify-content:center;color:#8f7180;font-size:14px;text-align:center;padding:15px}
-.product-body{padding:14px}
-.product h3{font-size:16px;margin:0 0 7px}
-.product p{font-size:13px;color:var(--muted);margin:0 0 13px;line-height:1.4}
-.buy{display:block;text-align:center;background:#211b20;color:#fff;text-decoration:none;padding:11px;border-radius:10px;font-weight:700;font-size:13px}
-.note{text-align:center;color:var(--muted);font-size:12px;margin:28px 0}
-footer{margin-top:45px;padding:28px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
-@media(max-width:800px){.products{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:480px){.logo{font-size:28px}.hero{padding:38px 18px}.products{gap:10px}.pic{height:190px}.categories{grid-template-columns:repeat(2,1fr)}}
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#fff8fb;
+  color:#211b20;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+/* HEADER */
+
+header{
+  text-align:center;
+  padding:25px 10px 10px;
+}
+
+.logo{
+  font-size:36px;
+  font-weight:800;
+}
+
+.logo span{
+  color:#c33771;
+}
+
+.tagline{
+  color:#777;
+  font-size:18px;
+  margin:10px 0 20px;
+}
+
+.social a{
+  display:inline-block;
+  background:#211b20;
+  color:#fff;
+  text-decoration:none;
+  padding:13px 25px;
+  border-radius:30px;
+  margin:5px;
+  font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+  margin:20px 0 45px;
+  padding:55px 20px;
+  text-align:center;
+  border-radius:28px;
+  background:linear-gradient(135deg,#ffe9f1,#fff3f7);
+  border:1px solid #f2d5df;
+}
+
+.hero h1{
+  font-size:48px;
+  margin:0 auto 20px;
+  max-width:700px;
+}
+
+.hero p{
+  color:#777;
+  font-size:20px;
+  max-width:700px;
+  margin:0 auto 25px;
+  line-height:1.5;
+}
+
+.shopbtn{
+  display:inline-block;
+  background:#c33771;
+  color:white;
+  text-decoration:none;
+  padding:16px 30px;
+  border-radius:35px;
+  font-weight:bold;
+  font-size:18px;
+}
+
+/* SECTION */
+
+h2{
+  text-align:center;
+  font-size:34px;
+  margin:35px 0 20px;
+}
+
+/* CATEGORY */
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.category{
+  background:white;
+  border:1px solid #eadde3;
+  border-radius:18px;
+  padding:20px;
+  text-align:center;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.category:hover{
+  transform:translateY(-3px);
+}
+
+/* PRODUCTS */
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  margin-top:25px;
+}
+
+.card{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid #eadde3;
+  box-shadow:0 5px 20px rgba(0,0,0,.05);
+}
+
+.card img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  background:#f9e5ed;
+}
+
+.card-content{
+  padding:16px;
+}
+
+.card h3{
+  margin:0 0 8px;
+  font-size:19px;
+}
+
+.card small{
+  color:#c33771;
+  font-weight:bold;
+}
+
+.card p{
+  color:#777;
+  line-height:1.4;
+  margin:8px 0 15px;
+}
+
+.view{
+  display:block;
+  text-align:center;
+  background:#c33771;
+  color:white;
+  text-decoration:none;
+  padding:12px;
+  border-radius:25px;
+  font-weight:bold;
+}
+
+.view:hover{
+  background:#a82d60;
+}
+
+.empty{
+  text-align:center;
+  color:#777;
+  padding:40px;
+  grid-column:1/-1;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:45px 10px;
+  color:#777;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .hero h1{
+    font-size:36px;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+
+  .products{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .card img{
+    height:220px;
+  }
+
+  .card-content{
+    padding:12px;
+  }
+
+  .card h3{
+    font-size:16px;
+  }
+
+  .card p{
+    font-size:13px;
+  }
+
+  .view{
+    font-size:13px;
+    padding:10px;
+  }
+}
+
+@media(min-width:800px){
+
+  .products{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .categories{
+    grid-template-columns:repeat(5,1fr);
+  }
+}
 </style>
 </head>
+
 <body>
-<header class="container">
-  <div class="logo">Priya<span>Wardrobe</span> ✨</div>
-  <div class="tagline">Fashion finds • Trending styles • Everyday picks</div>
-  <div class="social">
-    <!-- Replace # with your Instagram/YouTube URLs -->
-    <a href="#" target="_blank">Instagram</a>
-    <a href="#" target="_blank">YouTube</a>
+
+<div class="container">
+
+<header>
+
+  <div class="logo">
+    Priya<span>Wardrobe</span> ✨
   </div>
+
+  <div class="tagline">
+    Fashion finds • Trending styles • Everyday picks
+  </div>
+
+  <div class="social">
+
+    <!-- APNE INSTAGRAM KA LINK YAHAN BAAD ME DAAL SAKTE HO -->
+    <a href="#" target="_blank">
+      Instagram
+    </a>
+
+    <!-- APNE YOUTUBE KA LINK YAHAN BAAD ME DAAL SAKTE HO -->
+    <a href="#" target="_blank">
+      YouTube
+    </a>
+
+  </div>
+
 </header>
 
-<main class="container">
+
 <section class="hero">
-  <h1>Find your next<br>fashion favorite.</h1>
-  <p>Handpicked dresses, kurtis, bags, footwear and accessories — all in one place.</p>
-  <a class="cta" href="#products">Shop Latest Picks ↓</a>
+
+  <h1>
+    Find your next fashion favorite.
+  </h1>
+
+  <p>
+    Handpicked dresses, kurtis, bags, footwear and accessories —
+    all in one place.
+  </p>
+
+  <a href="#products" class="shopbtn">
+    Shop Latest Picks ↓
+  </a>
+
 </section>
 
-<h2>Shop by Category</h2>
+
+<h2>
+  Shop by Category
+</h2>
+
+
 <div class="categories">
-  <a class="cat" href="#products">👗 Dresses</a>
-  <a class="cat" href="#products">👚 Kurtis</a>
-  <a class="cat" href="#products">👜 Bags</a>
-  <a class="cat" href="#products">👟 Footwear</a>
-  <a class="cat" href="#products">💍 Accessories</a>
+
+  <div class="category"
+       onclick="filterProducts('Dresses')">
+    👗 Dresses
+  </div>
+
+  <div class="category"
+       onclick="filterProducts('Kurtis')">
+    👚 Kurtis
+  </div>
+
+  <div class="category"
+       onclick="filterProducts('Bags')">
+    👜 Bags
+  </div>
+
+  <div class="category"
+       onclick="filterProducts('Footwear')">
+    👟 Footwear
+  </div>
+
+  <div class="category"
+       onclick="filterProducts('Accessories')">
+    💍 Accessories
+  </div>
+
 </div>
 
-<h2 id="products">✨ Latest Picks</h2>
-<div class="products">
-  <!-- PRODUCT 1: Replace IMAGE URL, name, description and affiliate link -->
-  <article class="product">
-    <div class="pic">ADD PRODUCT IMAGE</div>
-    <div class="product-body">
-      <h3>Trending Dress</h3>
-      <p>Elegant everyday style pick.</p>
-      <a class="buy" href="YOUR_AFFILIATE_LINK_1" target="_blank" rel="nofollow sponsored noopener">View Product →</a>
-    </div>
-  </article>
 
-  <article class="product">
-    <div class="pic">ADD PRODUCT IMAGE</div>
-    <div class="product-body">
-      <h3>Stylish Kurti</h3>
-      <p>Easy-to-style fashion favorite.</p>
-      <a class="buy" href="YOUR_AFFILIATE_LINK_2" target="_blank" rel="nofollow sponsored noopener">View Product →</a>
-    </div>
-  </article>
+<h2 id="products">
+  ✨ Latest Picks
+</h2>
 
-  <article class="product">
-    <div class="pic">ADD PRODUCT IMAGE</div>
-    <div class="product-body">
-      <h3>Everyday Handbag</h3>
-      <p>Simple, practical and stylish.</p>
-      <a class="buy" href="YOUR_AFFILIATE_LINK_3" target="_blank" rel="nofollow sponsored noopener">View Product →</a>
-    </div>
-  </article>
 
-  <article class="product">
-    <div class="pic">ADD PRODUCT IMAGE</div>
-    <div class="product-body">
-      <h3>Trending Footwear</h3>
-      <p>A fresh pick for your wardrobe.</p>
-      <a class="buy" href="YOUR_AFFILIATE_LINK_4" target="_blank" rel="nofollow sponsored noopener">View Product →</a>
-    </div>
-  </article>
+<div id="productList" class="products">
+
+  <div class="empty">
+    Loading products...
+  </div>
+
 </div>
 
-<p class="note">Disclosure: Some links on PriyaWardrobe may be affiliate links. We may earn a commission when you purchase through them, at no extra cost to you.</p>
-</main>
 
 <footer>
-  <div class="container">© 2026 PriyaWardrobe • Fashion Finds & Affiliate Picks</div>
+  © 2026 PriyaWardrobe • Fashion Finds & Affiliate Picks
 </footer>
+
+</div>
+
+
+<script>
+
+/* GOOGLE SHEET */
+
+const SHEET_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1jXVDjpuB3xAGWHTT_dEkajaNBB5HmDnCAUoO06SNx2rozGHez_xNmpGeZ76Pk-byeTXv9F3-LmRD/pub?output=csv";
+
+
+let allProducts = [];
+
+
+/* CSV READER */
+
+function parseCSV(text){
+
+  const rows = [];
+  let row = [];
+  let value = "";
+  let insideQuotes = false;
+
+  for(let i=0;i<text.length;i++){
+
+    const char = text[i];
+    const next = text[i+1];
+
+    if(char === '"' && insideQuotes && next === '"'){
+
+      value += '"';
+      i++;
+
+    }
+
+    else if(char === '"'){
+
+      insideQuotes = !insideQuotes;
+
+    }
+
+    else if(char === ',' && !insideQuotes){
+
+      row.push(value.trim());
+      value = "";
+
+    }
+
+    else if(
+      (char === '\n' || char === '\r')
+      && !insideQuotes
+    ){
+
+      if(char === '\r' && next === '\n'){
+        i++;
+      }
+
+      row.push(value.trim());
+      value = "";
+
+      if(row.some(x => x !== "")){
+        rows.push(row);
+      }
+
+      row = [];
+
+    }
+
+    else{
+
+      value += char;
+
+    }
+  }
+
+
+  if(value || row.length){
+
+    row.push(value.trim());
+    rows.push(row);
+
+  }
+
+  return rows;
+}
+
+
+/* LOAD PRODUCTS */
+
+function loadProducts(){
+
+  fetch(SHEET_URL)
+
+  .then(response => {
+
+    if(!response.ok){
+      throw new Error("Sheet could not be loaded");
+    }
+
+    return response.text();
+
+  })
+
+  .then(csv => {
+
+    const rows = parseCSV(csv);
+
+
+    if(rows.length < 2){
+
+      document.getElementById("productList").innerHTML =
+      '<div class="empty">No products added yet.</div>';
+
+      return;
+
+    }
+
+
+    const headers =
+      rows[0].map(h => h.trim().toLowerCase());
+
+
+    allProducts =
+      rows.slice(1).map(row => {
+
+        let product = {};
+
+
+        headers.forEach((header,index) => {
+
+          product[header] =
+            row[index] || "";
+
+        });
+
+
+        return product;
+
+      })
+
+
+      .filter(p => {
+
+        return p.product &&
+               p.product.trim() !== "";
+
+      });
+
+
+    displayProducts(allProducts);
+
+  })
+
+
+  .catch(error => {
+
+    console.log(error);
+
+    document.getElementById("productList").innerHTML =
+
+      '<div class="empty">' +
+      'Products could not be loaded. Please try again.' +
+      '</div>';
+
+  });
+
+}
+
+
+/* SHOW PRODUCTS */
+
+function displayProducts(products){
+
+  const box =
+    document.getElementById("productList");
+
+
+  if(!products.length){
+
+    box.innerHTML =
+      '<div class="empty">' +
+      'No products found.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  box.innerHTML = products.map(p => {
+
+
+    const name =
+      p.product || "Fashion Product";
+
+
+    const category =
+      p.category || "";
+
+
+    const image =
+      p.image ||
+      "https://via.placeholder.com/500x600?text=PriyaWardrobe";
+
+
+    const description =
+      p.description ||
+      "Check out this fashion pick.";
+
+
+    /* IMPORTANT:
+       YOUR SHEET USES "Affiliate"
+    */
+
+    const link =
+      p.affiliate ||
+      p.link ||
+      p.url ||
+      "#";
+
+
+    return `
+
+      <div class="card">
+
+        <img
+          src="${image}"
+          alt="${name}"
+        >
+
+        <div class="card-content">
+
+          <h3>
+            ${name}
+          </h3>
+
+          <small>
+            ${category}
+          </small>
+
+          <p>
+            ${description}
+          </p>
+
+          <a
+            class="view"
+            href="${link}"
+            target="_blank"
+            rel="noopener"
+          >
+            View Product
+          </a>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+}
+
+
+/* CATEGORY FILTER */
+
+function filterProducts(category){
+
+  const filtered =
+    allProducts.filter(p =>
+
+      (p.category || "")
+      .toLowerCase()
+      .trim() ===
+      category.toLowerCase().trim()
+
+    );
+
+
+  displayProducts(filtered);
+
+
+  document
+    .getElementById("products")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* START */
+
+loadProducts();
+
+</script>
+
 </body>
 </html>
