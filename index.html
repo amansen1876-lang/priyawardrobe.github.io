@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PriyaWardrobe | Fashion Finds</title>
+<style>
+:root{--bg:#fff9fb;--card:#fff;--text:#211b20;--muted:#756d72;--pink:#d94f82;--line:#eadde3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;color:var(--text);background:linear-gradient(#fff8fb,#fff)}
+.top{background:#211b20;color:#fff;text-align:center;padding:8px;font-size:12px}
+header{position:sticky;top:0;z-index:5;background:#fff9fbf2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav,.wrap{width:min(1120px,calc(100% - 24px));margin:auto}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{font-size:28px;font-weight:900;letter-spacing:-1px}.logo span{color:var(--pink)}
+.social{display:flex;gap:7px}.social a,.buy{background:#211b20;color:#fff;border-radius:999px;padding:10px 14px;font-weight:800;font-size:13px;text-decoration:none}
+.hero{margin:20px 0 30px;padding:52px 24px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(135deg,#fff,#f9e5ed)}
+.hero small{background:#fff;border:1px solid var(--line);padding:8px 12px;border-radius:99px;color:#b93667;font-weight:800}
+.hero h1{font-size:clamp(38px,7vw,66px);line-height:.98;letter-spacing:-3px;max-width:700px;margin:20px 0 14px}.hero p{max-width:620px;color:var(--muted);line-height:1.6}.cta{display:inline-block;margin-top:8px;background:#211b20;color:#fff;padding:13px 20px;border-radius:99px;font-weight:800;text-decoration:none}
+.head{display:flex;justify-content:space-between;align-items:end;margin:30px 0 14px}.head h2{margin:0;font-size:30px}.count{color:var(--muted);font-size:14px}
+.categories{display:flex;gap:9px;overflow:auto;padding:2px 0 12px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}
+.cat{border:1px solid var(--line);background:#fff;border-radius:99px;padding:11px 18px;white-space:nowrap;font-weight:800}.cat.active{background:#211b20;color:#fff}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.product{background:#fff;border:1px solid var(--line);border-radius:21px;overflow:hidden;box-shadow:0 10px 30px #361c280d}.pic{height:310px;background:#f8f4f5;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pic img{width:100%;height:100%;object-fit:contain;background:#f8f4f5}.fallback{color:#9a858e;font-size:13px;text-align:center;padding:20px}
+.body{padding:15px}.badge{display:inline-block;background:#fde8f0;color:#b93667;padding:7px 10px;border-radius:99px;font-size:11px;font-weight:900;text-transform:uppercase}.product h3{font-size:18px;margin:10px 0 7px}.product p{font-size:14px;color:var(--muted);line-height:1.55;margin:0 0 14px}.buy{display:block;text-align:center;border-radius:12px}
+.empty,.loading{grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:18px}
+.note{text-align:center;color:var(--muted);font-size:12px;line-height:1.5;margin:35px auto}footer{text-align:center;border-top:1px solid var(--line);padding:28px;color:var(--muted);font-size:13px}
+@media(max-width:900px){.products{grid-template-columns:repeat(2,1fr)}.pic{height:360px}}
+@media(max-width:560px){.logo{font-size:24px}.social a{padding:9px 10px;font-size:12px}.hero{padding:42px 18px}.hero h1{font-size:43px}.products{gap:10px}.pic{height:260px}.product h3{font-size:16px}.product p{font-size:13px}}
+</style>
+</head>
+<body>
+<div class="top">✨ New fashion finds added regularly • Shop your next favorite</div>
+<header><div class="nav">
+<a class="logo" href="#">Priya<span>Wardrobe</span> ✦</a>
+<div class="social"><a href="https://www.instagram.com/_priyawardrobe/" target="_blank">Instagram</a><a href="https://youtube.com/@priyawardrobe" target="_blank">YouTube</a></div>
+</div></header>
+
+<main class="wrap">
+<section class="hero"><small>CURATED FASHION PICKS</small><h1>Find your next fashion favorite.</h1><p>Handpicked dresses, kurtis, tops, pants, bags and more — stylish finds collected in one place.</p><a class="cta" href="#products">Explore latest picks ↓</a></section>
+<div class="head"><h2>New &amp; Trending</h2><span class="count" id="count">Loading...</span></div>
+<div class="categories" id="categories"></div>
+<section id="products"><div class="products" id="grid"><div class="loading">Loading fashion finds...</div></div></section>
+<p class="note">Disclosure: Some links on PriyaWardrobe may be affiliate links. We may earn a commission when you purchase through them, at no extra cost to you.</p>
+</main>
+<footer>© 2026 PriyaWardrobe • Fashion Finds &amp; Affiliate Picks</footer>
+
+<script>
+const SHEET_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1jXVDjpuB3xAGWHTT_dEkajaNBB5HmDnCAUoO06SNx2rozGHez_xNmpGeZ76Pk-byeTXv9F3-LmRD/pub?output=csv";
+let products=[],selected="All";
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+function field(p,names){for(const n of names){if(String(p[n]||"").trim())return p[n]}return""}
+function imageUrl(u){
+ u=String(u||"").trim(); const m=u.match(/^https?:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/(.+)$/);
+ return m?`https://raw.githubusercontent.com/${m[1]}/${m[2]}/${m[3]}/${m[4]}`:u;
+}
+function csv(s){
+ let rows=[],r=[],c="",q=false;
+ for(let i=0;i<s.length;i++){let x=s[i],n=s[i+1];if(x=='"'&&q&&n=='"'){c+='"';i++;continue}if(x=='"'){q=!q;continue}if(x==','&&!q){r.push(c.trim());c="";continue}if((x=='\n'||x=='\r')&&!q){if(x=='\r'&&n=='\n')i++;r.push(c.trim());c="";if(r.some(v=>v))rows.push(r);r=[];continue}c+=x}r.push(c.trim());if(r.some(v=>v))rows.push(r);
+ if(!rows.length)return[];let h=rows[0].map(x=>x.toLowerCase());return rows.slice(1).map(a=>Object.fromEntries(h.map((x,i)=>[x,a[i]||""])));
+}
+function cats(){
+ let found=[];products.forEach(p=>{let c=field(p,["category"]);if(c&&!found.some(x=>x.toLowerCase()==c.toLowerCase()))found.push(c)});
+ let pref=["Dresses","Kurtis","Tops","Pants","Bags","Footwear","Accessories"];
+ let ordered=[...pref.filter(x=>found.some(y=>y.toLowerCase()==x.toLowerCase())),...found.filter(x=>!pref.some(y=>y.toLowerCase()==x.toLowerCase()))];
+ document.getElementById("categories").innerHTML=["All",...ordered].map(c=>`<button class="cat ${c==selected?"active":""}" onclick="choose('${esc(c).replace(/'/g,"\\'")}')">${esc(c)}</button>`).join("");
+}
+window.choose=c=>{selected=c;cats();render();document.getElementById("products").scrollIntoView({behavior:"smooth"})};
+function render(){
+ let list=selected=="All"?products:products.filter(p=>field(p,["category"]).toLowerCase()==selected.toLowerCase());
+ document.getElementById("count").textContent=`${list.length} ${list.length==1?"find":"finds"}`;
+ document.getElementById("grid").innerHTML=list.length?list.map(p=>{
+  let name=field(p,["product","name","title"])||"Fashion Find",cat=field(p,["category"])||"Fashion",desc=field(p,["description","details"])||"A stylish pick for your wardrobe.",img=imageUrl(field(p,["image","image url","photo"])),link=field(p,["affiliate","affiliate link","link","url"])||"#";
+  return `<article class="product"><div class="pic">${img?`<img src="${esc(img)}" alt="${esc(name)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="fallback" style="display:none">Image unavailable</div>`:`<div class="fallback">Product image</div>`}</div><div class="body"><span class="badge">${esc(cat)}</span><h3>${esc(name)}</h3><p>${esc(desc)}</p><a class="buy" href="${esc(link)}" target="_blank" rel="nofollow sponsored noopener">View Product →</a></div></article>`;
+ }).join(""):`<div class="empty">No products found in this category yet.</div>`;
+}
+fetch(SHEET_URL,{cache:"no-store"}).then(r=>r.text()).then(t=>{products=csv(t).filter(p=>field(p,["product","name","title"])||field(p,["image","image url","photo"]));cats();render()}).catch(e=>{console.error(e);document.getElementById("count").textContent="0 finds";document.getElementById("grid").innerHTML='<div class="empty">Products are temporarily unavailable. Please refresh.</div>'});
+</script>
+</body>
+</html>
